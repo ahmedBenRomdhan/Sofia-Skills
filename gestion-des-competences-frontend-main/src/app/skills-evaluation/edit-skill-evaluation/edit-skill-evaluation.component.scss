@@ -1,0 +1,40 @@
+:host::ng-deep{
+  .p-field{
+    margin-bottom: 0.8em;
+  }
+
+  .p-button.p-button-info {
+    width: 25%;
+    margin-top: 26px;
+    margin-right: 5px;
+  }
+  .p-button.p-button-secondary {
+    width: 25%;
+    margin-top: 26px;
+  }
+}
+
+
+.star{
+  color: #f5b917;
+  font-size: 29px;
+}
+.level{
+  font-size: 11px;
+  margin-left: 12px;
+  padding-bottom: 11px;
+}
+.example-radio-group {
+  display: flex;
+  margin: 15px 0;
+  align-items: flex-start;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.tit{
+  max-width: 50px;
+  font-size: medium;
+}

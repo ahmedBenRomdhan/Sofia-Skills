@@ -1,0 +1,47 @@
+<div mat-dialog-title>Edit Skill
+  <button (click)="closeDialog('')" class="close-dialog"><mat-icon  >close</mat-icon></button>
+</div>
+<div mat-dialog-content>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="p-fluid  p-grid">
+      <p-messages [value]="msgs" class="error"></p-messages>
+      <div class="p-field p-col-12 p-md-6 p-lg-6">
+        <label for="name" >Name</label>
+        <input [class.ng-dirty]="form.controls['name'].hasError('required') && form.controls['name'].touched"
+               id="name" type="text" pInputText
+               formControlName="name"
+               [value]="skill.name"
+        />
+        <small *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched"
+               class="text-danger support-text p-error">name is required.</small>
+      </div>
+      <div class="p-field p-col-12  p-md-6">
+        <label for="category">Category</label>
+        <p-dropdown [class.ng-dirty]="form.controls['category'].hasError('required') && form.controls['category'].touched"
+                    inputId="category" id="category" [options]="categories" appendTo="body" formControlName="category" placeholder="Select" optionLabel="name"></p-dropdown>
+        <small *ngIf="form.controls['category'].hasError('required') && form.controls['category'].touched"
+               class="text-danger support-text p-error">Category is required.</small>
+      </div>
+
+      <div class="p-field p-col-12 p-md-6">
+        <label for="name" >Function</label>
+        <mat-form-field appearance="outline">
+          <mat-label>Function</mat-label>
+          <mat-select  formControlName="function" multiple panelClass="myPanelClass">       
+            <mat-option (click)="nonSelectionFunctions()" > --- </mat-option>    
+            <mat-option *ngFor="let function of functions"
+                        [value]="function.id" >
+              <div  >{{function.name}}</div> 
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+    </div>
+
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button pButton pRipple label="Submit" type="submit" (click)="onSubmit()"  class="p-button-info p-col-6 p-md-6 "></button>
+  <button pButton pRipple  label="Cancel" (click)="resetForm()" class="p-button-secondary p-col-6 p-md-6 "></button>
+</div>

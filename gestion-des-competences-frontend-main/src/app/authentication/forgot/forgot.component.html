@@ -1,0 +1,38 @@
+<div class="login-register" style="background-image:url(assets/images/background/background4.jpg);">
+  <div class="login-register-box">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="text-center">
+            <h4 class="m-t-0">RECOVER PASSWORD</h4>
+          </div>
+          <p class="text-center font-14">Enter your email and we'll send you a new password.</p>
+          <p-message severity="error"  [hidden]="!errorMsg||successMsg" [text]="errorMsg"></p-message>
+          <p-message severity="success"  [hidden]="!successMsg||errorMsg" [text]="successMsg"></p-message>
+          <div fxLayout="column" fxLayoutAlign="space-around">
+            <div class="pb-1">
+              <div fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-xs="100">
+              <span class="p-float-label p-input-icon-right">
+                  <i class="fa fa-solid fa-envelope"></i>
+            <input [class.ng-dirty]="form.controls['email'].hasError('pattern') ||
+                   form.controls['email'].hasError('required') && form.controls['email'].touched" formControlName="email"
+                   pInputText
+                   id="email"
+                   type="email">
+            <label for="email">Email</label>
+             </span>
+              </div>
+            </div>
+              <small *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched"
+                     class="text-danger support-text p-error">Email is required.</small>
+              <small *ngIf="form.controls['email'].hasError('pattern')"
+                     class="text-danger support-text p-error"> Must be a valid email address.</small>
+
+            <button [disabled]="!form.valid" class="btn-block  m-t-20 m-b-20" pButton type="submit"> Submit</button>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

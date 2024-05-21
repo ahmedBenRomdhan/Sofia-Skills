@@ -1,0 +1,49 @@
+<div style="width: 100%">
+<mat-card>
+  <app-filter-card (resultData)="applyFilter($event)"></app-filter-card>
+</mat-card>
+<mat-card>
+
+
+  <div class="dashboard-container mat-elevation-z8 " tabindex="0" >
+    <table [dataSource]="dataSource" mat-table matSort>
+      <ng-container matColumnDef="user" >
+        <th *matHeaderCellDef mat-header-cell mat-sort-header class="skill-cell" > User</th>
+        <td *matCellDef="let element" class="skill-cell" mat-cell> {{element.user}}</td>
+      </ng-container>
+
+      <ng-container *ngFor="let skill of skillsColumns" [matColumnDef]="skill.name" >
+        <th *matHeaderCellDef class="skill-cell" mat-header-cell mat-sort-header > {{skill.name}}</th>
+        <td *matCellDef="let element" mat-cell
+            [style.background-color]="skill.enabled ? 'white' : 'rgb(233 236 239 / 38%)'">
+          <span *ngIf="element[skill.name] !== undefined && element[skill.name].level !== undefined">
+          <ngb-rating [(rate)]="element[skill.name].level"
+                      [ngClass]="{'yellow-star': element[skill.name].status === 'Valid',
+                        'grey-star' : element[skill.name].status === 'Evaluated' }"
+                      [pTooltip]="element[skill.name].level+' out of 4'"
+                      [readonly]="true"
+                      max="4">
+          </ngb-rating>
+          </span>
+          <span *ngIf="element[skill.name] === undefined">---</span>
+        </td>
+      </ng-container>
+
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" [class.bg-grey]='!row.enabled' mat-row></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr *matNoDataRow class="mat-row">
+        <td class="mat-cell" colspan="4">No data available</td>
+      </tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 [pageSize]="10"
+                 aria-label="Select page of periodic elements"
+                 showFirstLastButtons>
+  </mat-paginator>
+
+</mat-card>
+</div>
+

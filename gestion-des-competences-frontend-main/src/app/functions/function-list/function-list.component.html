@@ -1,0 +1,71 @@
+<p-messages [value]="msgs"></p-messages>
+<mat-card>
+  <div class="table-header">
+
+    <p-toolbar >
+      <ng-template pTemplate="left">
+        <button pButton pRipple label="Add Function" icon="pi pi-plus" class="p-button-info p-mr-2"
+                (click)="openAddFunctionDialog()"></button>
+
+      </ng-template>
+      <ng-template pTemplate="right">
+        <button
+                class="p-button-info p-mr-2"
+                label="Import Functions"
+                color="primary"
+                (click)="openImportDialog()"
+                pButton pRipple
+              >
+                <mat-icon style="margin-right: 5px;">cloud_download</mat-icon>
+
+              </button>
+      </ng-template>
+    </p-toolbar>
+    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" placeholder="Search" (keyup)="applyFilter($event)" #input />
+                    </span>
+  </div>
+
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let fct">{{fct.name}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
+        <td mat-cell *matCellDef="let fct"> {{fct.Department.name}}</td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef > Actions </th>
+        <td mat-cell *matCellDef="let fct">
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-info p-mr-2" pTooltip="Edit Function" (click)="openEditFunctionDialog(fct)"></button>
+          <button pButton pRipple  icon="pi pi-trash" pTooltip="Delete Function" class="p-button-rounded p-button-danger" (click)="confirmDelete(fct.id)" ></button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row  [class.make-grey]='!row.enabled' *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data available</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</mat-card>
+<p-confirmDialog [style]="{width: '30vw'}" key="confirmDialog"
+                 [baseZIndex]="10000">
+
+</p-confirmDialog>
+

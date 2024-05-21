@@ -1,0 +1,32 @@
+<!-- ============================================================== -->
+<!-- Filter -->
+<!-- ============================================================== -->
+<app-top-card (resultData)="applyFilter($event)"></app-top-card>
+<!-- ============================================================== -->
+<!-- Charts -->
+<!-- ============================================================== -->
+<div fxLayout="row wrap">
+    <!-- Column-->
+    <div fxFlex.gt-lg="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title>Skills Evaluation Overview</mat-card-title>
+          <mat-card-subtitle></mat-card-subtitle>
+          <div id="chart" class="d-flex flex-column" *ngIf="chartOptions">
+            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                       [dataLabels]="chartOptions.dataLabels" [plotOptions]="chartOptions.plotOptions"
+                       [yaxis]="chartOptions.yaxis" [legend]="chartOptions.legend" [fill]="chartOptions.fill"
+                       [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip" [xaxis]="chartOptions.xaxis"
+                       [grid]="chartOptions.grid">
+            </apx-chart>
+          </div>
+          <ul class="list-inline text-center">
+            <li>
+              <h6 class="text-muted text-success m-0">
+                <i class="fa fa-circle font-10 m-r-10 "></i>Skill Average Level</h6>
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>    </div>
+
+</div>

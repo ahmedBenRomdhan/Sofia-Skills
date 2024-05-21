@@ -1,0 +1,27 @@
+.mat-card{
+    height: 150px;
+  }
+  .mat-form-field{
+  font-size: 12px;
+  }
+  .filter-content {
+    height: 90px;
+    padding: 20px;
+  }
+  :host ::ng-deep {
+  
+    .p-button-info {
+      margin-top: 4px;
+    }
+  }
+
+  .flex{
+    display: flex;
+    justify-content: center;
+  }
+
+/*   ::ng-deep .myPanelClass  {
+    margin-top: 35px !important; 
+  } */
+  
+  

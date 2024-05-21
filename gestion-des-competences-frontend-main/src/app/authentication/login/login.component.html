@@ -1,0 +1,58 @@
+<div class="login-register background-img" >
+  <div class="login-register-box">
+    <mat-card>
+      <mat-card-content>
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
+          <div class="text-center">
+            <h3 class="m-t-0">SIGN IN </h3>
+            <p-message severity="error"  [hidden]="!error" [text]="error"></p-message>
+          </div>
+
+
+          <div fxLayout="row wrap">
+            <div fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-xs="100">
+              <span class="p-float-label p-input-icon-right">
+                  <i class="fa fa-solid fa-envelope"></i>
+            <input [class.ng-dirty]="form.controls['email'].hasError('pattern') ||
+                   form.controls['email'].hasError('required') && form.controls['email'].touched" formControlName="email"
+                   pInputText
+                   id="email"
+                   type="email">
+            <label for="email">Email</label>
+             </span>
+            </div>
+            <small *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched"
+                   class="text-danger support-text p-error">Email is required.</small>
+            <small *ngIf="form.controls['email'].hasError('pattern')"
+                   class="text-danger support-text p-error"> Must be a valid email address.</small>
+
+            <!-- col full-->
+            <div class="m-t-20" fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-xs="100">
+                <span class="p-float-label  p-input-icon-right">
+                   <i class="fa fa-solid fa-lock"></i>
+            <input [class.ng-dirty]="form.controls['password'].hasError('required') && form.controls['password'].touched" formControlName="password" id="password"
+                   pInputText
+                   type="password">
+            <label for="email">Password</label>
+             </span>
+            </div>
+            <small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched"
+                   class="text-danger support-text p-error">Password is required.</small>
+
+
+            <!-- col half-->
+            <div class="text-right" fxFlex.gt-sm="100" fxFlex.gt-xs="100">
+              <a [routerLink]="['/forgot']" class="link" id="forgetpwd">Forgot password?</a>
+            </div>
+            <!-- col full-->
+            <div fxFlex="100" fxFlex.gt-sm="100" fxFlex.gt-xs="100">
+              <button [disabled]="!form.valid" class="btn-block  m-t-20 m-b-20" pButton type="submit"> Login</button>
+            </div>
+            <!-- col full-->
+
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

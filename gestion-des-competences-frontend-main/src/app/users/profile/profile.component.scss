@@ -1,0 +1,17 @@
+:host ::ng-deep{
+.title {
+  margin-bottom: 45px;
+}
+  .mat-card{
+    height: 89%;
+    width: auto;
+  }
+  .p-fluid{
+    text-align: left;
+  }
+
+  .little-profile .pro-img img, .little-profile .pro-img:first-child img {
+    margin-top: 26px;
+    background-color: #ffffffc4;
+  }
+}

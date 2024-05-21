@@ -1,0 +1,146 @@
+:host ::ng-deep {
+
+  .p-toolbar {
+    padding: 0;
+    border: none;
+  }
+
+  .mat-card > :first-child {
+    padding: 15px;
+    background-color: #f8f9fa;
+  }
+
+  .mat-elevation-z8 {
+    box-shadow: none;
+  }
+
+  .p-dialog-mask.p-component-overlay {
+    background-color: transparent;
+  }
+
+  .p-dialog {
+    margin-top: 70px;
+    max-height: 80%;
+  }
+
+  .p-paginator {
+    .p-paginator-current {
+      margin-left: auto;
+    }
+  }
+
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+  .p-datatable.p-datatable-customers {
+    .p-datatable-header {
+      padding: 0.8rem;
+      text-align: left;
+      font-size: 1.2rem;
+    }
+
+    .p-paginator {
+      padding: 1rem;
+    }
+
+    .p-datatable-thead > tr > th {
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .p-datatable-tbody > tr > td {
+      cursor: auto;
+      font-size: 13px;
+    }
+
+    .p-dropdown-label:not(.p-placeholder) {
+      text-transform: uppercase;
+    }
+  }
+
+  /* Responsive */
+  .p-datatable-customers .p-datatable-tbody > tr > td .p-column-title {
+    display: none;
+  }
+
+  .p-button-success, .p-button-warning {
+    margin-right: 10px;
+  }
+
+  .mat-table {
+    width: 100%;
+    max-width: 100%;
+    overflow: auto;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  :host ::ng-deep {
+    .p-datatable {
+      &.p-datatable-customers {
+        .p-datatable-thead > tr > th,
+        .p-datatable-tfoot > tr > td {
+          display: none !important;
+        }
+
+        .p-datatable-tbody > tr {
+          border-bottom: 1px solid var(--layer-2);
+
+          > td {
+            text-align: left;
+            display: block;
+            border: 0 none !important;
+            width: 100% !important;
+            float: left;
+            clear: left;
+            border: 0 none;
+
+            .p-column-title {
+              padding: .4rem;
+              min-width: 30%;
+              display: inline-block;
+              margin: -.4rem 1rem -.4rem -.4rem;
+              font-weight: bold;
+            }
+
+            .p-progressbar {
+              margin-top: .5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+.file-input {
+  display: none;
+}
+
+.make-grey {
+  background-color: #717476;
+}
+
+th.mat-header-cell, td.mat-cell {
+  max-width: 200px;
+  min-width: 100px;
+  padding: 6px !important;
+  padding-left: 24px !important;
+}
+
+td {
+  white-space: nowrap;
+  width: 100px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+
+}
+table {
+  overflow-x: auto;
+  white-space: nowrap;
+}

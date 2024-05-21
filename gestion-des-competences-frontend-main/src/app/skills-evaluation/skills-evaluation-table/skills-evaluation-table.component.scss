@@ -1,0 +1,107 @@
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+  width: 100%;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+.mat-elevation-z8 {
+  box-shadow: none;
+}
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary{
+  width: auto;
+}
+.star{
+  color: #f5b917;
+  font-size: 20px;
+}
+:host::ng-deep{
+  .badge{
+    padding:0.4em;
+    font-size: 90%;
+  }
+  .mat-card>:first-child{
+    padding: 15px;
+    background-color: #f8f9fa;
+  }
+  .font-medium{
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}
+.table-header {
+  display: flex;
+  justify-content: space-between;
+}
+.name-initials{
+  margin-top: auto;
+  border: 1px solid #e0e2e3;
+  border-radius: 50%;
+  padding: 7px;
+  background-color: #f1f3f4ba;
+  font-weight: bolder;
+}
+
+.button-link{
+  border: none;
+  background-color: transparent;
+  color: #0000ffc7;
+}
+.button-link:hover{
+  color: rgba(121, 121, 150, 0.78);
+}
+.center-element{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+td, th { 
+  width: auto;
+  max-width: 50px;
+ }
+
+ .butt{
+  background-color: #0288D1 !important;
+  color: white;
+ }

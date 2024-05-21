@@ -1,0 +1,22 @@
+:host::ng-deep{
+  .p-field{
+    margin-bottom: 0.8em;
+    width: 100%;
+  }
+  .p-button.p-button-info {
+    width: 25%;
+    margin-top: 26px;
+    margin-right: 5px;
+  }
+  .p-button.p-button-secondary {
+    width: 25%;
+    margin-top: 26px;
+  }
+}
+
+/* ::ng-deep .myPanelClass  {
+  margin-top: 35px !important; 
+} */
+
+
+

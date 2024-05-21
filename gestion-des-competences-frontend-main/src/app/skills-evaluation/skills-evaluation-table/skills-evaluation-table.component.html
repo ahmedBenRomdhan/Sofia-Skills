@@ -1,0 +1,94 @@
+<p-messages [value]="msgs"></p-messages>
+<mat-card>
+  <div class="table-header">
+    <span >
+      <button  mat-button class="butt d-flex align-items-center" color="primary" (click)="sendEmail()">Submit Evaluations</button>
+    </span>
+    <span *ngIf="connectedUserRole !== 'USER'" class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input #input (keyup)="applyFilter($event)" pInputText placeholder="Search User" type="text" />
+    </span>
+  </div>
+
+  <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort multiTemplateDataRows>
+
+    <ng-container matColumnDef="firstName">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> User</th>
+      <td *matCellDef="let element" mat-cell>
+        <div class="d-flex">
+          <span class="name-initials">{{element.firstName[0]|uppercase}} {{element.lastName[0]|uppercase}}</span>
+          <div class="m-l-15 center-element">
+            <p class="font-medium ">{{ element.firstName|titlecase}} {{element.lastName|uppercase}}</p>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="department">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Department</th>
+      <td *matCellDef="let element" mat-cell> {{element.Department.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="function">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> Function</th>
+      <td *matCellDef="let element" mat-cell> {{element.Function.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="englishResume">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> English Resume</th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="downloadFile(element.engResumePath, element.engResumeFileName)" class="button-link">
+          <i class="pi pi-file"></i> {{element.engResumeFileName ? element.engResumeFileName : 'No file uploaded yet'}}
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="frenchResume">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> French Resume</th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="downloadFile(element.frResumePath, element.frResumeFileName)" class="button-link">
+          <i class="pi pi-file"></i> {{element.frResumeFileName ? element.frResumeFileName : 'No file uploaded yet'}}</button>
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="expand">
+      <th *matHeaderCellDef aria-label="row actions" mat-header-cell>&nbsp;</th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="openEditResumeDialog(element)" mat-icon-button>
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()"
+          aria-label="expand row" mat-icon-button>
+          <mat-icon *ngIf="expandedElement !== element">visibility</mat-icon>
+          <mat-icon *ngIf="expandedElement === element">visibility_off</mat-icon>
+        </button>
+        <button (click)="openSkillDialog(element)" mat-icon-button *ngIf="connectedUserRole != 'USER'">
+          <mat-icon>list</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length" mat-cell>
+        <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'" class="example-element-detail">
+
+          <div [hidden]="!element" class="example-element-description">
+            <app-skills-list (resultMsg)="displayMsg($event)" [userId]="element.id" [state]="currentState">
+            </app-skills-list>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="columnsToDisplayWithExpand" mat-header-row></tr>
+    <tr (click)="expandedElement = expandedElement === element ? null : element"
+      *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+      [class.example-expanded-row]="expandedElement === element" class="example-element-row" mat-row>
+    </tr>
+    <tr *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row" mat-row></tr>
+    <tr *matNoDataRow class="mat-row">
+      <td class="mat-cell" colspan="4">No data available</td>
+    </tr>
+  </table>
+  <mat-paginator *ngIf="connectedUserRole !== 'USER'" [pageSizeOptions]="[5, 10, 20]"
+    aria-label="Select page of periodic elements" showFirstLastButtons>
+  </mat-paginator>
+</mat-card>

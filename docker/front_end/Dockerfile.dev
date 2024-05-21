@@ -1,0 +1,12 @@
+FROM node:14.20-alpine as build
+
+# Specify the working directory
+WORKDIR /app
+
+# Copy your code source and run NPM install
+COPY ./gestion-des-competences-frontend-main/package.json /app/
+COPY ./gestion-des-competences-frontend-main /app/
+
+RUN npm install
+RUN npm install -g @angular/cli@13.3.9
+CMD ["ng","serve","--host", "0.0.0.0", "--disable-host-check"]

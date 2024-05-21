@@ -1,0 +1,116 @@
+<div class="table-header" *ngIf="connectedUserRole !== 'USER'">
+   <span></span>
+  <span class="p-input-icon-left">
+     <button (click)="validateStatus()" class="p-button-info p-mr-2" icon="pi pi-check"
+                                        label="Validate Evaluations"
+                                        pButton pRipple></button>
+  </span>
+</div>
+<table [dataSource]="dataSource"
+       class="mat-elevation-z8"
+       mat-table matSort>
+
+  <ng-container matColumnDef="select">
+    <th *matHeaderCellDef mat-header-cell>
+      <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                    [aria-label]="checkboxLabel()"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </th>
+    <td *matCellDef="let row" mat-cell>
+      <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                    (click)="$event.stopPropagation()"
+                    [aria-label]="checkboxLabel(row)"
+                    [disabled]="row.status === 'Valid' || row.status === 'Not Evaluated'  "
+                    [checked]="selection.isSelected(row) && row.status !== 'Valid' && row.status !== 'Not Evaluated' ">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+  <!-- Position Column -->
+  <ng-container matColumnDef="name">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header> Skill Name
+      <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="connectedUserRole != 'USER'">
+        <mat-icon pTooltip="Filter">filter_list</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" >
+        <section class="example-section" >
+          <mat-radio-group [(ngModel)]="statusDefaultValueP">
+            <p mat-menu-item *ngFor="let element of statusSkills">
+              <mat-radio-button class="example-margin" [value]="element" (change)="onStatusSkills($event)">
+                {{element}}</mat-radio-button></p>
+           </mat-radio-group>
+             </section>
+      </mat-menu>
+     </th>
+    <td *matCellDef="let element" mat-cell> {{element.Skill.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="category">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header> Skill Category</th>
+    <td *matCellDef="let element" mat-cell> {{element.Skill.Category.name}} </td>
+  </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="status">
+    <th *matHeaderCellDef mat-header-cell> Status
+      <button mat-icon-button [matMenuTriggerFor]="menu" >
+        <mat-icon pTooltip="Filter">filter_list</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" >
+        <section class="example-section" >
+          <mat-radio-group [(ngModel)]="statusDefaultValue">
+            <p mat-menu-item *ngFor="let element of statusValues">
+              <mat-radio-button class="example-margin" [value]="element" (change)="statusFilter($event)">
+                {{element}}</mat-radio-button></p>
+           </mat-radio-group>
+             </section>
+      </mat-menu>
+    </th>
+    <td *matCellDef="let element" mat-cell>
+      <mat-chip-list aria-label="Color selection" class="mat-chip-list-stacked">
+        <span *ngIf="element.status==='Valid'" class="badge badge-primary">{{element.status}}</span>
+        <span *ngIf="element.status==='Evaluated'" class="badge badge-warning">{{element.status}}</span>
+        <span *ngIf="element.status==='Not Evaluated'" class="badge badge-secondary">{{element.status}}</span>
+      </mat-chip-list>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="level">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header> Level</th>
+    <td *matCellDef="let element" mat-cell>
+      <ngb-rating [(rate)]="element.level" [readonly]="true" class="star" max="4"></ngb-rating>
+    </td>
+  </ng-container>
+  <!-- Weight Column -->
+  <ng-container matColumnDef="action">
+    <th *matHeaderCellDef mat-header-cell> Actions</th>
+    <td *matCellDef="let element" mat-cell>
+      <button (click)="openDetailsDialog(element)" class="p-button-rounded p-button-info p-mr-2"
+              icon="pi pi-external-link"
+              pButton
+              pRipple
+              pTooltip="Show details"></button>
+      <button (click)="openEditDialog($event,element)" class="p-button-rounded p-button-info" icon="pi pi-pencil"
+              pButton
+              pRipple
+              pTooltip="Edit evaluation"></button>
+    </td>
+  </ng-container>
+  <ng-container>
+
+  </ng-container>
+
+  <!-- Symbol Column -->
+
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr (click)="selection.toggle(row)" *matRowDef="let row; columns: displayedColumns;"
+      mat-row></tr>
+  <!-- Row shown when there is no matching data. -->
+  <tr *matNoDataRow class="mat-row">
+    <td class="mat-cell" colspan="4">No data available </td>
+  </tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5,10, 20]"
+               showFirstLastButtons
+               aria-label="Select page of periodic elements">
+</mat-paginator>

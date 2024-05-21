@@ -1,0 +1,83 @@
+version: '3.7'
+networks:
+  default:
+    name: usermanagement
+    external: true
+  static-network:
+    ipam:
+      config:
+       - subnet: ${SUBNET}
+volumes: 
+  usermanagementdbdata:
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: db_usermanagement
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - ${DB_PORT}:3306
+    volumes:
+      - usermanagementdbdata:/var/lib/mysql
+    restart: always
+    networks:
+      static-network:
+        ipv4_address: ${DB_IP}
+
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: pma_usermanagement
+    depends_on:
+      - db
+    environment:
+       PMA_HOST: ${PMA_HOST}
+       MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
+    restart: always
+    ports:
+     - ${PMA_PORT}:80
+    networks:
+      static-network:
+        ipv4_address: ${PMA_IP} 
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./docker/front_end/Dockerfile.dev
+    container_name: frontend_usermanagement
+    restart: always
+    depends_on: 
+      - backend
+    ports:
+      - ${ANGULAR_PORT}:4200
+    networks:
+        static-network:
+          ipv4_address: ${FRONT_IP}
+    volumes:
+      - './gestion-des-competences-frontend-main:/app'
+      - '/app/node_modules'
+
+  backend:
+    build: 
+      context: .
+      dockerfile: ./docker/back_end/Dockerfile
+    container_name: backend_usermanagement
+    depends_on: 
+      - db
+    restart: always
+    ports:
+      - ${NODE_PORT}:3000
+    command:
+      - nodemon
+      - app.js
+    networks:
+      static-network:
+        ipv4_address: ${BACK_IP}
+    volumes:
+      - './gestion-des-competences-backend-main:/usr/src/app'
+      - '/usr/src/app/node_modules'
+

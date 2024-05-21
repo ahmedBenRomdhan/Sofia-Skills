@@ -1,0 +1,37 @@
+<div mat-dialog-title>Add Function
+  <button (click)="closeDialog('')" class="close-dialog"><mat-icon  >close</mat-icon></button>
+</div>
+<div mat-dialog-content>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="p-fluid  p-grid">
+      <p-messages [value]="msgs" class="error"></p-messages>
+      <div class="p-field p-col-12 ">
+        <label for="name" >Name*</label>
+        <input [class.ng-dirty]="form.controls['name'].hasError('required') && form.controls['name'].touched"
+               id="name" type="text" pInputText formControlName="name"
+
+        />
+        <small *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched"
+               class="text-danger support-text p-error">Name is required.</small>
+      </div>
+      <div class="p-field p-col-12">
+        <label for="department">Department*</label>
+        <p-dropdown [class.ng-dirty]="form.controls['department'].hasError('required') && form.controls['department'].touched"
+                    inputId="department" id="department"
+                    appendTo="body"
+                    [options]="departments" formControlName="department"
+                    placeholder="Select" optionLabel="name"></p-dropdown>
+        <small *ngIf="form.controls['department'].hasError('required') && form.controls['department'].touched"
+               class="text-danger support-text p-error">Department is required.</small>
+      </div>
+
+    </div>
+
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button pButton pRipple label="Submit" type="submit" (click)="onSubmit()"  class="p-button-info p-col-6 p-md-6 "></button>
+  <button pButton pRipple  label="Cancel" (click)="cancel()" class="p-button-secondary p-col-6 p-md-6 "></button>
+
+</div>
+

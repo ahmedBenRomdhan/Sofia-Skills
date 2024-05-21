@@ -1,0 +1,43 @@
+:host::ng-deep{
+  .p-field{
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .p-button.p-button-info {
+      width: 15%;
+    height: 15px;
+      margin-top: 26px;
+      margin-right: 10px;
+    }
+  .p-button.p-button-secondary {
+    width: 15%;
+    height: 15px;
+    margin-top: 26px;
+    margin-right: 10px;
+  }
+  .mat-error{
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+.firstName{
+  text-transform: capitalize;
+}
+.lastName{
+  text-transform:uppercase;
+}
+.mat-form-field{
+  font-size: 12px;
+}
+.mat-accordion{
+  width: 100%;
+}
+.mat-expansion-panel{
+  box-shadow: none;
+}
+
+/* ::ng-deep .myPanelClass  {
+  margin-top: 35px !important; 
+} */
+

@@ -1,0 +1,42 @@
+table {
+  width: 100%;
+}
+.mat-elevation-z8 {
+  box-shadow: none;
+  height: 50px;
+  overflow: auto;
+}
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary{
+  width: auto;
+}
+.star{
+  color: #f5b917;
+  font-size: 20px;
+}
+:host::ng-deep{
+  .badge{
+    padding:0.4em;
+    font-size: 90%;
+  }
+  .mat-card>:first-child{
+    padding: 15px;
+    background-color: #f8f9fa;
+  }
+  .p-button.p-button-info{
+    height: 34px;
+  }
+  .p-inputtext{
+    height: 34px;
+  }
+}
+.mat-menu-item{
+  font-size: 13px;
+  height: 35px;
+  margin-bottom: 0px;
+}
+
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+}

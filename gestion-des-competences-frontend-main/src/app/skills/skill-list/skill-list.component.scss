@@ -1,0 +1,149 @@
+.mat-tab-group{
+  margin: 11px;
+}
+:host ::ng-deep {
+  .mat-tab-label{
+    width: 50%;
+  }
+  .mat-card{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  .p-toolbar{
+    padding: 0;
+    border: none;
+  }
+  .mat-card>:first-child{
+    padding: 15px;
+    background-color: #f8f9fa;
+  }
+  .mat-elevation-z8 {
+    box-shadow: none;
+  }
+  .p-dialog-mask.p-component-overlay {
+    background-color: transparent;
+  }
+  .p-dialog{
+    margin-top: 70px;
+    max-height: 80%;
+  }
+  .p-paginator {
+    .p-paginator-current {
+      margin-left: auto;
+    }
+  }
+
+  .p-progressbar {
+    height: .5rem;
+    background-color: #D8DADC;
+
+    .p-progressbar-value {
+      background-color: #607D8B;
+    }
+  }
+
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .p-calendar .p-datepicker {
+    min-width: 25rem;
+
+    td {
+      font-weight: 400;
+    }
+  }
+
+  .p-datatable.p-datatable-customers {
+    .p-datatable-header {
+      padding: 0.8rem;
+      text-align: left;
+      font-size: 1.2rem;
+    }
+
+    .p-paginator {
+      padding: 1rem;
+    }
+
+    .p-datatable-thead > tr > th {
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .p-datatable-tbody > tr > td {
+      cursor: auto;
+      font-size: 13px;
+    }
+
+    .p-dropdown-label:not(.p-placeholder) {
+      text-transform: uppercase;
+    }
+  }
+
+  /* Responsive */
+  .p-datatable-customers .p-datatable-tbody > tr > td .p-column-title {
+    display: none;
+  }
+  .p-button-success{
+    margin-right: 10px;
+  }
+  .mat-table{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  :host ::ng-deep {
+    .p-datatable {
+      &.p-datatable-customers {
+        .p-datatable-thead > tr > th,
+        .p-datatable-tfoot > tr > td {
+          display: none !important;
+        }
+
+        .p-datatable-tbody > tr {
+          border-bottom: 1px solid var(--layer-2);
+
+          > td {
+            text-align: left;
+            display: block;
+            border: 0 none !important;
+            width: 100% !important;
+            float: left;
+            clear: left;
+            border: 0 none;
+
+            .p-column-title {
+              padding: .4rem;
+              min-width: 30%;
+              display: inline-block;
+              margin: -.4rem 1rem -.4rem -.4rem;
+              font-weight: bold;
+            }
+
+            .p-progressbar {
+              margin-top: .5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+.file-input {
+  display: none;
+}
+.description-container{
+  width: 50%;
+}
+
+/* ::ng-deep .myPanelClass  {
+  margin-top: 35px !important;
+}
+ */
+ .make-grey {
+  background-color: #717476;
+}

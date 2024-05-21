@@ -1,0 +1,35 @@
+<!-- ============================================================== -->
+<!-- Filter -->
+<!-- ============================================================== -->
+<app-top-card-curve [testComponenet]="testComponenet" (resultData)="applyFilter($event)" ></app-top-card-curve>
+<!-- ============================================================== -->
+<!-- Charts -->
+<!-- ============================================================== -->
+<div fxLayout="row wrap">
+    <!-- Column-->
+    <div fxFlex.gt-lg="100" fxFlex.gt-md="100" fxFlex.gt-xs="100" fxFlex="100">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title>Over Time Skills Evolution</mat-card-title>
+          <mat-card-subtitle></mat-card-subtitle>
+          <div id="chart">
+            <apx-chart
+              [series]="chartOptions2?.series"
+              [chart]="chartOptions2?.chart"
+              [xaxis]="chartOptions2?.xaxis"
+              [yaxis]="chartOptions2?.yaxis"
+              [stroke]="chartOptions2?.stroke"
+              [tooltip]="chartOptions2?.tooltip"
+              [dataLabels]="chartOptions2?.dataLabels"
+            ></apx-chart>
+          </div>
+          <ul class="list-inline text-center">
+            <li>
+              <h6 class="text-muted text-success m-0">
+                <i class="fa fa-circle font-10 m-r-10 "></i>Skill Average Level</h6>
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>    </div>
+
+</div>

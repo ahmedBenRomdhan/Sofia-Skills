@@ -1,0 +1,32 @@
+<div mat-dialog-title>Add Department
+  <button (click)="closeDialog('')" class="close-dialog"><mat-icon  >close</mat-icon></button>
+</div>
+<div mat-dialog-content>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="p-fluid  p-grid">
+      <p-messages [value]="msgs" class="error"></p-messages>
+      <div class="p-field p-col-12 ">
+        <label for="name" >Name*</label>
+        <input [class.ng-dirty]="form.controls['name'].hasError('required') && form.controls['name'].touched"
+               id="name" type="text" pInputText formControlName="name"
+
+        />
+        <small *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched"
+               class="text-danger support-text p-error">Name is required.</small>
+      </div>
+      <div class="p-field p-col-12">
+        <label for="description">Description</label>
+        <textarea id="description" type="text" pInputTextarea formControlName="description" ></textarea>
+
+      </div>
+
+    </div>
+
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button pButton pRipple label="Submit" type="submit" (click)="onSubmit()"  class="p-button-info p-col-6 p-md-6 "></button>
+  <button pButton pRipple  label="Cancel" (click)="cancel()" class="p-button-secondary p-col-6 p-md-6 "></button>
+
+</div>
+

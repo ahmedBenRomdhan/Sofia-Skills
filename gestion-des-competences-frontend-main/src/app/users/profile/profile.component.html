@@ -1,0 +1,50 @@
+
+<div fxLayout="row wrap">
+  <!-- Card column -->
+  <div fxFlex.gt-lg="35" fxFlex.gt-md="40" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card class="oh text-center little-profile">
+      <img mat-card-image src="assets/images/background/weatherbg.jpg" class="profile-bg-height"
+           alt="Photo of a Shiba Inu">
+      <mat-card-content >
+        <div class="pro-img">
+          <img src="assets/images/users/User-avatar.png" width="100" alt="user">
+        </div>
+        <h3 class="m-b-0" >{{firstName | titlecase}} {{lastName | uppercase}}</h3>
+        <h6 class="m-t-0 " >{{function}}  </h6>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex.gt-lg="75" fxFlex.gt-md="60" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title class="title">Your Account</mat-card-title>
+        <div class="p-fluid  p-grid"  >
+
+          <div class="p-field p-col-12 ">
+            <label for="email">Email</label>
+            <input id="email" type="text" readonly pInputText [value]="email"  />
+          </div>
+          <div class="p-field p-col-12  p-md-6">
+            <label for="role">Role</label>
+            <input id="role" type="text" readonly pInputText [value]="role" />
+          </div>
+          <div class="p-field p-col-12  p-md-6">
+            <label for="company">Company</label>
+            <input id="company" type="text" readonly pInputText [value]="company"  />
+          </div>
+          <div class="p-field p-col-12 p-md-6">
+            <label for="department">Department</label>
+            <input id="department" type="text" readonly pInputText [value]="department"  />
+          </div>
+          <div class="p-field p-col-12 p-md-6" >
+            <label for="function">Function</label>
+            <input id="function" type="text" readonly pInputText [value]="function"  />
+          </div>
+
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

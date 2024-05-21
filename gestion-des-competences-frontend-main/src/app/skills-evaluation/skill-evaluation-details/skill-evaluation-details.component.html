@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>{{skillEvaluation.Skill.name}}
+  <span  class="badge badge-warning" *ngIf="skillEvaluation.status==='Evaluated'" >{{skillEvaluation.status}}</span>
+  <span  class="badge badge-info" *ngIf="skillEvaluation.status==='Valid'">{{skillEvaluation.status}}</span>
+  <span *ngIf="skillEvaluation.status==='Not Evaluated'" class="badge badge-secondary">{{skillEvaluation.status}}</span>
+</h1>
+<div mat-dialog-content>
+  <div class="row">
+    <h5 class="m-t-30 m-b-5 col-1 rate">{{skillEvaluation.level}}</h5>
+    <span class="col-2">Out of {{maxStar}} stars</span>
+    <span class="col-6">
+    <ngb-rating [readonly]="true" class="star" [max]="maxStar" [rate]="skillEvaluation.level"></ngb-rating>
+  </span>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="p-t-20 m-b-5 title ">
+        <label for="evaluator">Skill Evaluator</label>
+        <input id="evaluator" type="text" readonly pInputText [value]="evaluator ? evaluator: ' '"  />
+      </div>
+
+    </div>
+    <div class="col-6">
+      <div class="p-t-20 m-b-5 title ">
+        <label for="date">Evaluation Date</label>
+        <input id="date" type="text" readonly pInputText [value]="evaluationDate | date"  />
+      </div>
+    </div>
+  </div>
+  <div class="p-t-20 m-b-5 title ">
+    <label for="evidence">Skill Evaluation Evidence</label>
+    <textarea id="evidence" type="text" readonly pInputTextarea [value]="skillEvaluation.evaluationEvidence" ></textarea>
+  </div>
+  <br/>
+
+</div>
+<div mat-dialog-actions align="end">
+  <button pButton pRipple  label="Close" (click)="closeDialog('')"  class="p-button-secondary p-col-6 p-md-6 "></button>
+
+</div>

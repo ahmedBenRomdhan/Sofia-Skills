@@ -1,0 +1,102 @@
+
+<mat-tab-group mat-align-tabs="center" (selectedTabChange)="close()">
+  <mat-tab label="Categories" ><app-category-list></app-category-list></mat-tab>
+  <mat-tab label="Skills list" >
+    <p-messages [value]="msgs"></p-messages>
+    <mat-card>
+      <div class="table-header">
+
+        <p-toolbar >
+          <button pButton pRipple [label]='msg' class="p-button-info p-mr-2"
+                    (click)="onClickapplyPertinentSkillFilter()" ></button>
+          <ng-template pTemplate="left">
+            <button pButton pRipple label="Add skill" icon="pi pi-plus" class="p-button-info p-mr-2"
+                    (click)="openAddSkillDialog()" ></button>
+
+          </ng-template>
+          <ng-template pTemplate="right">
+            <button
+                class="p-button-info p-mr-2"
+                label="Import Skills"
+                color="primary"
+                (click)="openImportDialog()"
+                pButton pRipple
+              >
+                <mat-icon style="margin-right: 5px;">cloud_download</mat-icon>
+
+              </button>
+          </ng-template>
+        </p-toolbar>
+        <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" placeholder="Search" (keyup)="applyFilter($event)" #input />
+    </span>
+      </div>
+
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+          <!-- ID Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Skill </th>
+            <td mat-cell *matCellDef="let skill">{{skill.name}} </td>
+          </ng-container>
+          <ng-container matColumnDef="categoryName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+            <td mat-cell *matCellDef="let skill">{{skill.Category.name}} </td>
+          </ng-container>
+          <ng-container matColumnDef="functionName" >
+            <th mat-header-cell *matHeaderCellDef >
+              <mat-form-field class="d-flex mt-3" appearance="outline">
+                <mat-label>Filter with function</mat-label>
+                <mat-select  [(ngModel)]="selectedFunctions" (selectionChange)="onSelectChange($event)" panelClass="myPanelClass">
+                  <mat-option (click)="nonSelectionFunctions()">--</mat-option>
+                  <mat-option *ngFor="let fn of functions"
+                              [value]="fn.id" >
+                    {{fn.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </th>
+            <td mat-cell *matCellDef="let skill" >
+              <div *ngFor="let sk of skill.Functions">
+                - {{sk.name}}
+              </div>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef > Action </th>
+            <td mat-cell *matCellDef="let skill">
+              <button pButton pRipple icon="pi pi-user-edit" class="p-button-rounded p-button-info p-mr-2"  (click)="openEditSkillDialog(skill)"></button>
+              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirmDelete(skill.id)" ></button>
+            </td>
+          </ng-container>
+
+
+          <!-- Progress Column -->
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.make-grey]='!row.enabled'></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data available</td>
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                       showFirstLastButtons
+                       aria-label="Select page of periodic elements">
+        </mat-paginator>
+      </div>
+    </mat-card>
+
+
+    <p-confirmDialog [style]="{width: '30vw'}" key="confirmDialog"
+                     [baseZIndex]="10000">
+    </p-confirmDialog>
+  </mat-tab>
+</mat-tab-group>
+
+

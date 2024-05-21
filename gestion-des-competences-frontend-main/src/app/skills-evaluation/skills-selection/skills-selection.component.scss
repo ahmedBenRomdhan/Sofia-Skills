@@ -1,0 +1,46 @@
+.example-chip-list {
+    width: 100%;
+  }
+
+.split{
+  display: flex;
+  justify-content: space-between;
+}
+
+.side{
+  width: 47%;
+}
+
+.list{
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 1%;
+  overflow-y: scroll;
+  height: 400px;
+}
+
+.arrows{
+  margin-top: 32%;
+  margin-left: 5%;
+}
+
+.arrowsAlt{
+  margin-top: 32%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.arrows1{
+  margin-top: 27%;
+  margin-left: 5%;
+}
+
+.btn_app{
+  color:#0288D1;
+}
+
+mat-list-option{
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  height: auto !important;
+}

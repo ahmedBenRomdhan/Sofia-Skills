@@ -1,0 +1,88 @@
+<div mat-dialog-title >
+  Edit User
+  <button (click)="closeDialog('')" class="close-dialog"><mat-icon  >close</mat-icon></button>
+</div>
+<div mat-dialog-content>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="p-fluid  p-grid">
+      <p-messages [value]="msgs" class="error"></p-messages>
+      <div class="p-field p-col-12 p-md-6 p-lg-6">
+        <label for="firstName" >First name*</label>
+        <input [class.ng-dirty]="form.controls['firstName'].hasError('required') && form.controls['firstName'].touched"
+               id="firstName" type="text" pInputText
+               formControlName="firstName"
+               [value]="user.firstName"
+               style="text-transform: capitalize;"
+        />
+        <small *ngIf="form.controls['firstName'].hasError('required') && form.controls['firstName'].touched"
+               class="text-danger support-text p-error">First name is required.</small>
+      </div>
+      <div class="p-field p-col-12 p-md-6 p-lg-6">
+        <label for="lastName">Last name*</label>
+        <input [class.ng-dirty]="form.controls['lastName'].hasError('required') && form.controls['lastName'].touched"
+               id="lastName" type="text" pInputText
+               [value]="user.lastName"
+               formControlName="lastName" style="text-transform:uppercase" />
+        <small *ngIf="form.controls['lastName'].hasError('required') && form.controls['lastName'].touched"
+               class="text-danger support-text p-error">Last name is required.</small>
+      </div>
+      <div class="p-field p-col-12">
+        <label for="addressEmail">Address e-mail*</label>
+        <input [class.ng-dirty]="form.controls['email'].hasError('pattern') ||
+                   form.controls['email'].hasError('required') && form.controls['email'].touched"
+               id="addressEmail" type="text"
+               [value]="user.email"
+               pInputText formControlName="email"/>
+        <small *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched"
+               class="text-danger support-text p-error">Email is required.</small>
+        <small *ngIf="form.controls['email'].hasError('pattern')"
+               class="text-danger support-text p-error"> Must be a valid e-mail address. </small>
+      </div>
+      <div class="p-field p-col-12  p-md-6">
+        <label for="role">Role*</label>
+        <p-dropdown [class.ng-dirty]="form.controls['role'].hasError('required') && form.controls['role'].touched"
+                    inputId="role" id="role" [options]="roles"
+                    appendTo="body"
+                    formControlName="role" placeholder="Select" optionLabel="name"></p-dropdown>
+        <small *ngIf="form.controls['role'].hasError('required') && form.controls['role'].touched"
+               class="text-danger support-text p-error">Role is required.</small>
+      </div>
+      <div class="p-field p-col-12 p-md-6">
+        <label for="company">Company*</label>
+        <p-dropdown [class.ng-dirty]="form.controls['company'].hasError('required') && form.controls['company'].touched"
+                    id="company" inputId="company"
+                    appendTo="body"
+                    [options]="companies"
+                    formControlName="company" placeholder="Select" optionLabel="value"></p-dropdown>
+        <small *ngIf="form.controls['company'].hasError('required') && form.controls['company'].touched"
+               class="text-danger support-text p-error">Company is required.</small>
+      </div>
+
+      <div class="p-field p-col-12  p-md-6">
+        <label for="department">Department*</label>
+        <p-dropdown [class.ng-dirty]="form.controls['department'].hasError('required') && form.controls['department'].touched"
+                    inputId="department" id="department" (onChange)="searchFunctions($event)"
+                    appendTo="body"
+                    [options]="departments" formControlName="department" placeholder="Select" optionLabel="name"></p-dropdown>
+        <small *ngIf="form.controls['department'].hasError('required') && form.controls['department'].touched"
+               class="text-danger support-text p-error">Department is required.</small>
+      </div>
+      <div class="p-field p-col-12  p-md-6">
+        <label for="function">Function*</label>
+        <p-dropdown [class.ng-dirty]="form.controls['function'].hasError('required') && form.controls['function'].touched"
+                    inputId="function" id="function"
+                    appendTo="body"
+                    [options]="functions" formControlName="function" placeholder="Select" optionLabel="name"></p-dropdown>
+        <small *ngIf="form.controls['function'].hasError('required') && form.controls['function'].touched"
+               class="text-danger support-text p-error">Function is required.</small>
+      </div>
+
+    </div>
+
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button pButton pRipple label="Submit" type="submit" (click)="onSubmit()"  class="p-button-info p-col-6 p-md-6 "></button>
+  <button pButton pRipple  label="Cancel" (click)="closeDialog('')" class="p-button-secondary p-col-6 p-md-6 "></button>
+
+</div>

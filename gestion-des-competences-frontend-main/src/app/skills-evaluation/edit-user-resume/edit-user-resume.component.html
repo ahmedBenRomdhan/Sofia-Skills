@@ -1,0 +1,67 @@
+<div mat-dialog-title>Edit {{data.firstName | titlecase}} Resume
+  <button (click)="closeDialog('')" class="close-dialog"><mat-icon  >close</mat-icon></button>
+</div>
+
+<div mat-dialog-content>
+  <form  [formGroup]="form">
+    <div class="p-fluid  p-grid">
+      <p-messages [value]="msgs" class="error"></p-messages>
+      <div class="p-field p-col-6 p-md-6 p-sm-12">
+        <label  for="experienceYears">Years of experience</label>
+        <p-inputNumber  id="experienceYears" mode="decimal" formControlName="experienceYears" ></p-inputNumber>
+      </div>
+      <div class="p-field p-col-6 p-md-6 p-sm-12">
+        <label for="sofiaStartWorkDate">Start work date at Sofia </label>
+        <p-calendar formControlName="sofiaStartWorkDate" id="sofiaStartWorkDate" appendTo="body"
+                    [showIcon]="true" dateFormat="dd.mm.yy"></p-calendar>
+      </div>
+      <!-- <div class="p-field p-col-6 p-md-6 p-sm-12">
+        <label for="availableDate" >Availibility in date </label>
+        <p-calendar formControlName="availableDate" id="availableDate" [minDate]="currentDate" appendTo="body"
+                    [showIcon]="true" dateFormat="dd.mm.yy" [disabled]="connectedUserRole === 'USER'"></p-calendar>
+      </div> -->
+      <div class="p-field p-col-12 p-md-12 p-sm-12">
+        <label for="pertinentSkill" >Skills key</label>
+        <textarea pInputTextarea formControlName="pertinentSkill" id="pertinentSkill"></textarea>
+      </div>
+      <div class="p-field p-col-6 p-md-6 p-sm-12">
+        <label for="engResume" >English resume</label>
+        <input type="file" class="file-input" id="engResume"
+               (change)="onUploadEngFile($event)"
+               accept="application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+               #engResumeUpload >
+
+        <div class="file-upload">
+
+          <button mat-mini-fab color="primary" class="upload-btn" (click)="engResumeUpload.click()">
+            <i class="pi pi-upload"></i>
+          </button>
+          {{engResumeFileName || "No file uploaded yet."}}
+        </div>
+      </div>
+      <div class="p-field p-col-6 p-md-6 p-sm-12">
+        <label for="frResume">French resume </label>
+        <input type="file" class="file-input" id="frResume"
+               (change)="onUploadFrFile($event)"
+               accept="application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+               #frResumeUpload >
+
+        <div class="file-upload">
+
+          <button mat-mini-fab color="primary" class="upload-btn" (click)="frResumeUpload.click()">
+            <i class="pi pi-upload"></i>
+          </button>
+          {{frResumeFileName || "No file uploaded yet."}}
+      </div>
+      </div>
+      </div>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button pButton pRipple label="Submit" type="submit" (click)="onSubmit()"  class="p-button-info p-col-6 p-md-6 "></button>
+  <button pButton pRipple  label="Reset" (click)="resetForm()" class="p-button-secondary p-col-6 p-md-6 "></button>
+
+</div>
+
+
+

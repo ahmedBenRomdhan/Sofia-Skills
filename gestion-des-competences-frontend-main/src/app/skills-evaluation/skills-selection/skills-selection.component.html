@@ -1,0 +1,91 @@
+<div mat-dialog-title>Manage skills
+  <button (click)="dialogRef.close()" class="close-dialog">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div mat-dialog-content class="split mb-3">
+  <div class="side">
+    <form class="example-form" name="SearchFormNonAffected" [formGroup]="SearchFormNonAffected">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Filter non assigned skills</mat-label>
+        <input matInput name="nonSelectedSkillCtrl" formControlName="nonSelectedSkillCtrl" (keyup)="onChange($event)" />
+      </mat-form-field>
+    </form>
+
+    <mat-selection-list class="list"  [multiple]="true" name="nonSelectedOptions" [(ngModel)]="nonSelectedOptions"
+      *ngIf="!testNonAffected">
+      <mat-list-option *ngFor="let skill of allSkillsNonAffected" [value]="skill">
+        {{skill.Skill.name}}
+      </mat-list-option>
+    </mat-selection-list>
+
+    <mat-selection-list class="list" #shoes [multiple]="true" name="nonSelectedOptions" [(ngModel)]="nonSelectedOptions"
+      *ngIf="testNonAffected">
+      <mat-list-option *ngFor="let skill of filtredSkillsNonAffected" [value]="skill">
+        {{skill.Skill.name}}
+      </mat-list-option>
+    </mat-selection-list>
+
+  </div>
+  <div [ngClass]="(nonAffectedTest == true && affectedTest == true) ? 'arrows' : 'arrowsAlt'" >
+    <button mat-icon-button id="rightButton" (click)="toAffectedSkill()" *ngIf="nonAffectedTest">
+      <mat-icon class="btn_app">arrow_forward</mat-icon>
+    </button>
+    <button mat-icon-button (click)="toNonAffectedSkill()" *ngIf="affectedTest" >
+      <mat-icon class="btn_app">arrow_back</mat-icon>
+    </button>
+  </div>
+  <div class="side">
+    <form class="example-form" name="SearchFormAffected" [formGroup]="SearchFormAffected">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Filter assigned skills</mat-label>
+        <input matInput name="SelectedSkillCtrl" formControlName="SelectedSkillCtrl"
+          (keyup)="onChangeAffected($event)" />
+      </mat-form-field>
+    </form>
+
+    <mat-selection-list class="list" #shoes [multiple]="true" name="selectedOptions" [(ngModel)]="selectedOptions"
+      *ngIf="!testAffected">
+      <mat-list-option *ngFor="let skill of allSkillsAffected" [value]="skill">
+        {{skill.Skill.name}}
+      </mat-list-option>
+    </mat-selection-list>
+
+    <mat-selection-list class="list" #shoes [multiple]="true" name="selectedOptions" [(ngModel)]="selectedOptions"
+      *ngIf="testAffected">
+      <mat-list-option *ngFor="let skill of filtredSkillsAffected" [value]="skill">
+        {{skill.Skill.name}}
+      </mat-list-option>
+    </mat-selection-list>
+
+  </div>
+  <div class="arrows1">
+    <div>
+      <button mat-icon-button id="highestButton" (click)="highestIndex()">
+        <mat-icon class="btn_app">vertical_align_top</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button mat-icon-button id="higherButton" (click)="higherIndex()">
+        <mat-icon class="btn_app">arrow_upward</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button mat-icon-button id="lowerButton" (click)="lowerIndex()">
+        <mat-icon class="btn_app">arrow_downward</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button mat-icon-button id="lowestButton" (click)="lowestIndex()">
+        <mat-icon class="btn_app">vertical_align_bottom</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button pButton pRipple label="Submit" (click)="onSubmit()" type="submit"
+    class="p-button-info p-col-3 p-mx-1 "></button>
+  <button pButton pRipple label="Reset" (click)="ngOnInit()" class="p-button-secondary p-col-3 p-mx-1 "></button>
+
+</div>

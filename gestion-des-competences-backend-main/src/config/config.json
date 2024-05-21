@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "usermanagement",
+    "password": "usermanagement",
+    "database": "internship_app",
+    "host": "db_usermanagement",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "usermanagement",
+    "password": "usermanagement",
+    "database": "internship_app",
+    "host": "db_usermanagement",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "usermanagement",
+    "password": "usermanagement",
+    "database": "internship_app",
+    "host": "db_usermanagement",
+    "dialect": "mysql"
+  }
+}

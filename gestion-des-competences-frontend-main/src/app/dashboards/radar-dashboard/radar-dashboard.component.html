@@ -1,0 +1,14 @@
+<app-top-card-curve [years]="years" [testComponenet]="testComponenet" (resultDataRadar)="applyFilter($event)" ></app-top-card-curve>
+
+<div id="chart" >
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis"
+      [yaxis]="chartOptions.yaxis"
+      [stroke]="chartOptions.stroke"
+      [markers]="chartOptions.markers"
+      [fill]="chartOptions.fill"
+      [title]="chartOptions.title"
+    ></apx-chart>
+  </div>
